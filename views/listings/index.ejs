@@ -68,8 +68,12 @@
                 <div class="card-img-overlay"></div>
                 <div class="card-body">
                     <p class="card-text"> <b><%= list.title %></b> <br>
-                    &#8377; <%= (list.price ?? 0).toLocaleString("en-IN") %> / night
-                    <i class="info-tax">&nbsp; &nbsp; &nbsp; +18% GST</i>
+                        <span class="base-price">
+                        ₹ <%= (list.price ?? 0).toLocaleString("en-IN") %></span>
+
+                        <span class="total-price" style="display: none;">
+                        ₹ <%= ((list.price ?? 0) * 1.18).toLocaleString("en-IN") %></span>/ night
+                        <i class="info-tax">&nbsp; &nbsp; &nbsp; +18% GST</i>
                     </p>
                 </div>
             </div>
@@ -80,17 +84,22 @@
 </body>
 
 <script>
-    let taxPrice = document.getElementById("switchCheckDefault");
+    let taxToggle = document.getElementById("switchCheckDefault");
 
-    taxPrice.addEventListener("click", () => {
-        let taxInfo = document.getElementsByClassName("info-tax");
-        for(info of taxInfo) {
-            if (info.style.display != "inline") {
-                info.style.display = "inline";
-            } else {
-                info.style.display = "none";
-            }
-            
+    taxToggle.addEventListener("change", () => {
+    let basePrices = document.getElementsByClassName("base-price");
+    let totalPrices = document.getElementsByClassName("total-price");
+    let taxInfo = document.getElementsByClassName("info-tax");
+    for (let i = 0; i < basePrices.length; i++) {
+        if (taxToggle.checked) {
+            basePrices[i].style.display = "none";
+            totalPrices[i].style.display = "inline";
+            taxInfo[i].style.display = "inline";
+        } else {
+            basePrices[i].style.display = "inline";
+            totalPrices[i].style.display = "none";
+            taxInfo[i].style.display = "none";
         }
-    });
+    }
+});
 </script>
