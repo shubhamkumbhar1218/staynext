@@ -1,10 +1,10 @@
 const express = require("express");
 const wrapAsync = require("../utility/wrapAsync");
 const router = express.Router();
+const { isLogged } = require("../middleware.js");
 const passport = require("passport");
 const User = require("../models/user.js");
 const { saveRedirectUrl } = require("../middleware.js")
-
 const userController = require("../controlers/user.js");
 
 router.get("/signup", userController.userIndex);
@@ -20,5 +20,8 @@ router.post("/login", saveRedirectUrl, passport.authenticate("local", { failureR
 
 //logout route
 router.get("/logout", userController.logoutRoute);
+
+//profile route
+router.get("/profile", isLogged, wrapAsync (userController.profile));
 
 module.exports = router;
