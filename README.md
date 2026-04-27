@@ -49,16 +49,16 @@ StayNext is a full-stack web application inspired by Airbnb that allows users to
 ## 📸 Screenshots
 
 ###  Home Page
-![Home](home page.png)
+![Home](homepage.png)
 
 ###  Review Results
-![Review](review page.png)
+![Review](reviewpage.png)
 
 ###  Listing Details
-![Listing](listing .png)
+![Listing](listing.png)
 
 ###  Add Listing
-![Add](add listing .png)
+![Add](addlisting.png)
 
 
 ---
