@@ -1,6 +1,42 @@
 <% layout("layouts/boilerplate.ejs") %>
+<style>
+    .search-bar {
+    border-radius: 25px;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    font-size: 1rem;
+}
 
+.search-btn {
+    background-color: #fe424d;
+    border-radius: 25px;
+    color: #fff;
+}
+
+.search-btn:hover {
+    background-color: #fe424d;
+    color: #fff;
+}
+
+.search-btn i{
+    display: inline;
+    margin-left: 0.5rem;
+}
+</style>
 <body>
+    <div  class="container mt-2 d-flex justify-content-center">
+        <form class="d-flex" action="/listing/search" method="GET">
+            <input 
+                class="form-control me-2 search-bar" 
+                type="search" 
+                name="query" 
+                placeholder="Search country"
+            />
+            <button class="btn search-btn" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>Search
+            </button>
+        </form>
+    </div>
+
     <div class="filters">
         <div class="filter">
             <div><i class="fa-solid fa-fire"></i></div>
@@ -67,7 +103,8 @@
                 <img src="<%=list.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
                 <div class="card-img-overlay"></div>
                 <div class="card-body">
-                    <p class="card-text"> <b><%= list.title %></b> <br>
+                    <p class="card-text">
+                    <b><%= list.title %></b> <br>
                         <span class="base-price">
                         ₹ <%= (list.price ?? 0).toLocaleString("en-IN") %></span>
 
