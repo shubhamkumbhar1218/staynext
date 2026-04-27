@@ -42,8 +42,7 @@ StayNext is a full-stack web application inspired by Airbnb that allows users to
 
 ## 🌐 Live Demo
 
-👉 [https://your-render-link.com ](https://staynext-2.onrender.com) 
-*(Replace this with your actual deployed link)*
+👉 [https://staynext-2.onrender.com](https://staynext-2.onrender.com)
 
 ---
 
@@ -61,7 +60,6 @@ StayNext is a full-stack web application inspired by Airbnb that allows users to
 ###  Add Listing
 ![Add](add listing .png)
 
-*(Replace these with real screenshots from your app)*
 
 ---
 
