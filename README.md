@@ -1,6 +1,6 @@
 # 🏡 StayNext – Property Booking Platform
 
-StayNext is a full-stack web application inspired by Airbnb that allows users to explore and book property listings with real-time features and modern UI.
+StayNext is a full-stack web application inspired by Airbnb that allows users to explore, search by country and book property listings with real-time features and modern UI.
 
 ---
 
@@ -8,7 +8,7 @@ StayNext is a full-stack web application inspired by Airbnb that allows users to
 
 - 🔐 User Authentication (Sessions & Cookies)
 - 🏠 Create, Edit, Delete Listings
-- 📅 Date-based Availability (Booking System)
+- 🔍 Search & Filter Listings (Location, Price, Guests)
 - ⭐ Ratings & Reviews System
 - 🗺️ Map Integration (Location Visualization)
 - ☁️ Image Upload using Cloudinary
