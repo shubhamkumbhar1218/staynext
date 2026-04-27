@@ -1,0 +1,51 @@
+<% layout("layouts/boilerplate.ejs") %>
+
+<h2 class="container mt-2 mb-3 d-flex justify-content-center">Search Results for "<%= query %>"</h2>
+
+<% if (results.length === 0) { %>
+<spna>
+    <h3 class="container mt-2 mb-3 d-flex justify-content-center">
+    <i class="fa-regular fa-face-frown-open" style="color: #fe424d; font-size: larger;"></i>
+    No listings found.</h3>
+</spna>
+<% } %>
+
+<% results.forEach(listing => { %>
+<div class="container mt-4 mb-5 d-flex justify-content-center">
+
+    <div class="card listing-card shadow-lg">
+    <a href="/listing/<%= listing._id %>" class="link-listing">
+        <img src="<%= listing.image.url %>" class="card-img-top listing-img" alt="listing_image">
+    </a>
+        <div class="card-body">
+
+            <h3 class="card-title fw-bold"><%= listing.title %></h3>
+
+            <h6 class="owner-name fw-bold"><i><%= listing.owner.username %></i></h6>
+
+            <p class="card-text text-muted"><%= listing.description %></p>
+
+            <p class="price">
+                &#8377; <%= (listing.price ?? 0).toLocaleString("en-IN") %> / night 
+            </p>
+
+            <p class="location">
+                📍 <%= listing.location %>, <%= listing.country %>
+            </p>
+
+            <% if (currUser && listing.owner._id.equals(currUser._id)) { %>
+                <div class="mt-3 d-flex gap-2">
+                <a href="/listing/<%= listing._id %>/edit">
+                    <button class="btn btn-danger">Edit</button>
+                </a>
+
+                <form method="POST" action="/listing/<%= listing._id %>?_method=DELETE">
+                    <button class="btn btn-dark">Delete</button>
+                </form>
+            </div>
+            <% } %>
+
+        </div>
+    </div>
+</div>
+<% }) %>
