@@ -13,13 +13,10 @@ const listingRouter = require("./routes/listing");
 const reviewRouter = require("./routes/review");
 const userRouter = require("./routes/user");
 const session = require("express-session");
-const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
-const dbUrl = process.env.ATLASDB_URL;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -32,24 +29,12 @@ main()
 .then(() => console.log("Connected to MongoDB"))
 .catch((err) => console.log(err));
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
 }
 
-const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    crypto: {
-        secret: process.env.SECRET,
-    },
-    touchAfter: 24 * 3600,
-});
-
-store.on("error", (err) => {
-    console.log("ERROR in MONGO SESSION STORE", err);
-});
 
 const sessionOption = {
-    store,
-    secret: process.env.SECRET,
+    secret: "mysupersecret",
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -81,6 +66,9 @@ app.use("/listing", listingRouter);
 app.use("/listing/:id/review", reviewRouter);
 app.use("/",userRouter);
 
+//privacy & terms routes
+app.get("/privacy", (req, res) => res.render("listings/privacy"));
+app.get("/terms", (req, res) => res.render("listings/terms"));
 
 //Middlewares
 app.use((req, res, next) => {
@@ -95,4 +83,4 @@ app.use((err, req, res ,next) => {
 
 app.listen(3000, () => {
     console.log("Server is listining on port 3000");
-});
+});  
