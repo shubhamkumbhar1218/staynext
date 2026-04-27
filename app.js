@@ -25,11 +25,12 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.engine("ejs", ejsMate);
 
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
 main()
 .then(() => console.log("Connected to MongoDB"))
 .catch((err) => console.log(err));
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+    await mongoose.connect(dbUrl);
 }
 
 
@@ -81,6 +82,8 @@ app.use((err, req, res ,next) => {
     res.status(statusCode).render("error.ejs", { err });
 });
 
-app.listen(3000, () => {
-    console.log("Server is listining on port 3000");
-});  
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
+    console.log("Server running on port", PORT);
+}); 
