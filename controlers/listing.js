@@ -125,3 +125,21 @@ module.exports.delete = async (req, res) => {
 module.exports.uploadImage = async (req, res) => {
     res.send(req.file);
 };
+
+// search route
+module.exports.search = async (req, res) => {
+    let query = req.query.query?.trim();;
+
+    if (!query) {
+        console.log("NO QUERY");
+        return res.redirect("/listing");
+    }
+
+    let filter = {
+        country: { $regex: query, $options: "i" }
+    };
+
+    let results = await Listing.find(filter);
+
+    res.render("listings/search", { results, query });
+};
