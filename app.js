@@ -25,12 +25,11 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 app.engine("ejs", ejsMate);
 
-const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
 main()
 .then(() => console.log("Connected to MongoDB"))
 .catch((err) => console.log(err));
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
 }
 
 
