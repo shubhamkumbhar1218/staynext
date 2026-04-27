@@ -49,3 +49,13 @@ module.exports.logoutRoute = (req, res, next) => {
         res.redirect("/listing");
     });
 };
+
+//profile route
+module.exports.profile = async (req, res) => {
+    let currUser = req.user;
+    
+    if (!currUser) {
+        throw new ExpressError(404, "User not found");
+    } 
+    res.render("users/profile", { currUser });
+};
