@@ -188,13 +188,51 @@ body {
     font-size: 1.5rem;
 }
 
+.pink_user {
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 2px solid #fe424d;
+    border-radius: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;;
+}
 
+.pink_user i {
+    text-align: center;
+    margin-left: 1rem;
+    color: #fe424d;
+    font-size: 1.5rem;
+}
 
+/* profile */
+body {
+    color: white;
+    font-family: Arial, sans-serif;
+}
 
+.profile-card {
+    background-color: #f6f3ff;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 50px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
 
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1db954;
+}
 
+.btn-custom {
+    background: #1db954;
+    border: none;
+}
 
-
-
-
+.btn-custom:hover {
+    background: #17a74a;
+}
 
