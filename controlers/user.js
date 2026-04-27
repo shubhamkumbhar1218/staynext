@@ -1,5 +1,6 @@
 const User = require("../models/user.js");
 const mongoose = require("mongoose");
+const ExpressError = require("../utility/ExpressError");
 
 //get route
 module.exports.userIndex = (req, res) => {
