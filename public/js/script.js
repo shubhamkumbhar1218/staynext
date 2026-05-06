@@ -1,6 +1,3 @@
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-
-// Bootstrap validation (keep as it is)
 (() => {
   'use strict'
 
@@ -12,14 +9,11 @@
         event.preventDefault()
         event.stopPropagation()
       }
-
       form.classList.add('was-validated')
     }, false)
   })
 })();
 
-
-// ✅ APPLY ONLY TO LISTING FORM
 const listingForm = document.getElementById("listingForm");
 
 if (listingForm) {
@@ -28,7 +22,6 @@ if (listingForm) {
 
     const locationInput = document.getElementById("location");
 
-    // safety check
     if (!locationInput) {
       listingForm.submit();
       return;
@@ -36,56 +29,30 @@ if (listingForm) {
 
     const location = locationInput.value;
 
-    const res = await fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${location}`
-    );
-
-    const data = await res.json();
-
-    if (data.length === 0) {
-      alert("Location not found");
-      return;
-    }
-
-    const lat = data[0].lat;
-    const lng = data[0].lon;
-
-    document.getElementById("lat").value = lat;
-    document.getElementById("lng").value = lng;
-
-    console.log("Coordinates:", lat, lng);
-
-    listingForm.submit(); // ✅ submit ONLY this form
-  });
-}
-
-
-
-
-document.querySelector("form").addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const location = document.getElementById("location").value;
-
-    const res = await fetch(
+    try {
+      const res = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${location}`
-    );
+      );
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.length === 0) {
+      if (data.length === 0) {
         alert("Location not found");
         return;
+      }
+
+      const lat = data[0].lat;
+      const lng = data[0].lon;
+
+      document.getElementById("lat").value = lat;
+      document.getElementById("lng").value = lng;
+
+      console.log("Coordinates:", lat, lng);
+
+      listingForm.submit();
+    } catch (err) {
+      console.error(err);
+      alert("Error fetching location");
     }
-
-    const lat = data[0].lat;
-    const lng = data[0].lon;
-
-    // set hidden inputs
-    document.getElementById("lat").value = lat;
-    document.getElementById("lng").value = lng;
-
-    console.log("Coordinates:", lat, lng);
-
-    e.target.submit(); // submit form
-});
+  });
+}
