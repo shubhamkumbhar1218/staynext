@@ -27,6 +27,14 @@
 </div>
 </div>
 
+<div class="mb-3">
+    <lable for="number" class="form-lable">Mobile Number</lable>
+    <input value="<%= listing.mobile %>" placeholder="+91" name="listing[mobile]" type="text" class="form-control" required>
+    <div class="invalid-feedback">
+        Please provide a mobile number.
+    </div>
+</div>
+
 <div class="card listing-card edit-image">
     Original Listing<br>
     <img src="<%= originalImg %>" />
