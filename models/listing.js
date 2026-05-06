@@ -9,13 +9,14 @@ const listingSchema = new mongoose.Schema({
     description: String, 
     mobile: {
         type: String,
-        maxLength: 10,
-        minLength: 10,
         default: "2345678900",
         required: true,
     },
     image: {
-        url: String,
+        url: {
+        type: String,
+        required: true,
+        },
         filename: String,
     },
     price: Number,
