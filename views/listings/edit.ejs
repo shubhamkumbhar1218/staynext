@@ -29,7 +29,14 @@
 
 <div class="mb-3">
     <lable for="number" class="form-lable">Mobile Number</lable>
-    <input value="<%= listing.mobile %>" placeholder="+91" name="listing[mobile]" type="text" class="form-control" required>
+    <input value="<%= listing.mobile %>" placeholder="+91"
+        name="listing[mobile]" 
+        type="text" 
+        pattern="[0-9]{10}"
+        minlength="10"
+        maxlength="10"
+        class="form-control" 
+        required>
     <div class="invalid-feedback">
         Please provide a mobile number.
     </div>
