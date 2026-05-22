@@ -25,4 +25,46 @@
 
     </div>
 </div>
-<br><br><br><br><br>
+<br>
+<hr>
+
+<h3 class="text-center">
+    My Listings (<%= listings.length %>)
+</h3>
+
+<% if(listings.length > 0){ %>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <%for(let list of listings) {%>
+        <div class="card">
+            <img src="<%=list.image.url%>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+            <div class="card-body">
+                <p class="card-text">
+                <b><%= list.title %></b> <br>
+                </p>
+                <p><%= list.location %></p>
+                <p>₹ <%= list.price.toLocaleString("en-IN") %></p>
+                <a href="/listing/<%= list._id %>"class="btn btn-primary">View</a>
+            </div>
+        </div>
+    <%}%>
+</div>
+
+<% } else { %>
+
+<div class="text-center mt-4">
+
+<h5>No listings added yet</h5>
+
+<p>Add your first listing</p>
+
+<a href="/listing/new"
+class="btn btn-success">
+Create Listing
+</a>
+
+</div>
+
+<% } %>
+
+<br>
