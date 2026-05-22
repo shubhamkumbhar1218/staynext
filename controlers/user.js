@@ -1,4 +1,5 @@
 const User = require("../models/user.js");
+const Listing = require("../models/listing");
 const mongoose = require("mongoose");
 const ExpressError = require("../utility/ExpressError");
 
@@ -58,5 +59,10 @@ module.exports.profile = async (req, res) => {
     if (!currUser) {
         throw new ExpressError(404, "User not found");
     } 
+    // get listing created by current user
+    const listings = await Listing.find({
+        owner: currUser._id
+    }).populate("owner");
+    
     res.render("users/profile", { currUser });
 };
