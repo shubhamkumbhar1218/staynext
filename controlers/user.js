@@ -64,5 +64,5 @@ module.exports.profile = async (req, res) => {
         owner: currUser._id
     }).populate("owner");
     
-    res.render("users/profile", { currUser });
+    res.render("users/profile", { currUser, listings });
 };
