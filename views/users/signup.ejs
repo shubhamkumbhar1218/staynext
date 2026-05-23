@@ -5,7 +5,7 @@
     <div class="col-6 offset-3">
         <form action="/signup" method="POST" class="needs-validation" novalidate>
             <div class="mb-3">
-                <lable for="username" class="form-lable">Username:</lable> 
+                <label for="username" class="form-label">Username:</label> 
                 <input name="username" 
                 type="text" 
                 id="username"
@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="mb-3">
-                <lable for="email" class="form-lable">Email:</lable> 
+                <label for="email" class="form-label">Email:</label> 
                 <input name="email" 
                 type="email" 
                 id="email"
@@ -24,13 +24,18 @@
                 </div>
 
                 <div class="mb-3">
-                <lable for="password" class="form-lable">Password:</lable> 
+                <label for="password" class="form-label">Password:</label> 
                 <input name="password" 
                 type="password" 
                 id="password"
-                class="form-control" required/>
+                class="form-control" 
+                minlength="6" required/>
+                <div class="invalid-feedback">
+                    password must be at least 6 characters.
                 </div>
-                <p>Already have an account?  <a href="/login">SIGN IN</a></p>
+                </div>
+
+                <p>Already have an account?  <a href="/login"><b>SIGN IN</b></a></p>
                 <button class="btn btn-success">SignUp</button>
 
         </form>
